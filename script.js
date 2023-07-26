@@ -27,3 +27,4 @@ class User{
 
 const hay = new User("jay@gmail.com", "abc")
 console.log(hay.email);
+console.log("Added Succefull")
