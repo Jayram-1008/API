@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-API</title>
+</head>
+
+<body>
+    <h1>Use of XMLHttpRequest with GET method</h1>
+
+</body>
+<script>
+    const body = document.querySelector('body');
+    const div = document.createElement('div');
+    div.style.width = '500px';
+    div.style.height = '500px';
+    div.style.background = "gray";
+    div.style.border = "1px solid red";
+
+    const buttton = document.createElement('button');
+    buttton.textContent = "Load Data";
+    buttton.style.padding = "10px";
+    buttton.style.margin = "50px";
+
+    let img = document.createElement('img');
+    img.alt = "loading Picture"
+    div.appendChild(img);
+
+    let p = document.createElement('p');
+    div.appendChild(p);
+
+    div.appendChild(buttton)
+    body.appendChild(div);
+
+    buttton.addEventListener("click", (e) => {
+        var http = new XMLHttpRequest();
+        var url = 'https://api.github.com/users/hiteshchoudhary';
+        var method = 'GET';
+        http.open(method, url);
+        http.onreadystatechange = function () {
+            if (http.readyState === 4) {
+                const data = JSON.parse(this.responseText);
+                img.src = data.avatar_url;
+            }
+            http.onload = () => {
+            console.log(http.responseURL);
+            }
+        };
+        http.send();
+    })
+
+
+
+
+</script>
+
+</html>
